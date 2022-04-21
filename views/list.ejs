@@ -1,0 +1,33 @@
+<%- include("header.ejs") -%>
+
+<div class="main-container">
+
+
+<div class="box" id="heading">
+  <h1> <%= listTitle %></h1>
+</div>
+<!--  -->
+<div class="box">
+
+  <!-- DISPLAYING EACH ITEM IN COLLECTION -->
+  <% newListItems.forEach( (item) => { %>
+  <form action="/delete" method="post">
+
+    <div class="item">
+      <!-- DELETE ITEM IF CHECKBOX IS CHECKED -->
+      <input type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()">
+      <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+      <p><%= item.name %></p>
+    </div>
+
+  </form>
+  <% }); %>
+
+  <!-- CREATING NEW TASK THAT IS ADDED TO LIST -->
+  <form class="item" action="/" method="post">
+    <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+    <button type="submit" name="list" value="<%= listTitle %>">+</button>
+  </form>
+</div>
+
+<%- include("footer.ejs") -%>
