@@ -1,4 +1,5 @@
 //IMPORTING NPMS
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
@@ -19,7 +20,8 @@ app.use(express.static("public"));
 
 
 //  CONNECTING TO DB AND GIVING SAMPLE TASKS
-mongoose.connect("mongodb+srv://j4kk0b:TesTow2212@cluster0.htumh.mongodb.net/todolistDB");
+
+mongoose.connect(process.env.DATABASE_KEY);
 
 const itemsSchema = {
   name: String
